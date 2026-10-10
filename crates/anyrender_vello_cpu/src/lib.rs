@@ -5,6 +5,7 @@ mod image_cache;
 mod image_convert;
 mod image_renderer;
 mod scene;
+mod texture_renderer;
 mod window_renderer;
 
 #[cfg(feature = "filters")]
@@ -13,6 +14,7 @@ mod filters;
 pub use image_cache::ImageCacheConfig;
 pub use image_renderer::VelloCpuImageRenderer;
 pub use scene::VelloCpuScenePainter;
+pub use texture_renderer::*;
 
 #[cfg(any(
     feature = "pixels_window_renderer",

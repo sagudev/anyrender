@@ -344,3 +344,22 @@ pub trait PaintScene: RenderContext {
         );
     }
 }
+
+pub trait Texture {
+    fn width(&self) -> u32;
+    fn height(&self) -> u32;
+
+    fn download(&self, buffer: &mut [u8]);
+}
+
+pub trait TextureRenderer: RenderContext {
+    type ScenePainter<'a>: PaintScene
+    where
+        Self: 'a;
+
+    fn render_to_texture<F: FnOnce(&mut Self::ScenePainter<'_>)>(
+        &mut self,
+        draw_fn: F,
+        texture: &dyn Texture,
+    );
+}
